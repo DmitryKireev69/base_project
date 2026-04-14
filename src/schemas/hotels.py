@@ -2,16 +2,14 @@ from pydantic import BaseModel, Field, ConfigDict
 from typing import Annotated
 
 
-class HotelSchema(BaseModel):
-    model_config = ConfigDict(from_attributes=True)
-
+class CreateHotelSchema(BaseModel):
     title: str
     location: str
 
 
-class HotelResponseSchema(BaseModel):
-    status: str
-    data: HotelSchema
+class HotelSchema(CreateHotelSchema):
+    id: int
+
 
 class HotelPATCH(BaseModel):
     title: Annotated[str | None, Field(None)]
