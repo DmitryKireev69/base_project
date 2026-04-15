@@ -1,19 +1,19 @@
 from sqlalchemy import select
-from src.models import HotelsOrm
+from src.models import HotelOrm
 from src.schemas.hotels import HotelSchema
 from src.repositories.base import BaseRepository
 
 
 class HotelsRepository(BaseRepository):
-    model = HotelsOrm
+    model = HotelOrm
     schema = HotelSchema
 
     async def get_all(self, limit, offset, title, location):
         query = select(self.model)
         if title:
-            query = query.where(HotelsOrm.title.ilike(f'%{title.strip()}%'))
+            query = query.where(HotelOrm.title.ilike(f'%{title.strip()}%'))
         if location:
-            query = query.where(HotelsOrm.location.ilike(f'%{location.strip()}%'))
+            query = query.where(HotelOrm.location.ilike(f'%{location.strip()}%'))
         query = (
             query
             .limit(limit)

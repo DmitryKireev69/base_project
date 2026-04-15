@@ -1,4 +1,5 @@
-from .hotels import HotelsOrm
-from .rooms import RoomsOrm
+from .hotels import HotelOrm
+from .rooms import RoomOrm
+from .users import UserOrm
 
-__all__ = ["HotelsOrm", "RoomsOrm"]
+__all__ = ["HotelOrm", "RoomOrm", "UserOrm"]
