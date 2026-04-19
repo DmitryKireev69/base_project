@@ -1,11 +1,13 @@
 from fastapi import FastAPI
 from src.routers.hotels import router as router_hotels
+from src.routers.auth import router as router_auth
 
 
 app = FastAPI(
     description='Добро пожаловать в апи!'
 )
 
+app.include_router(router_auth)
 app.include_router(router_hotels)
 
 

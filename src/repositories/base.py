@@ -15,9 +15,9 @@ class BaseRepository:
         result = await self.session.execute(query)
         return [self.schema.model_validate(hotel, from_attributes=True) for hotel in result.scalars().all()]
 
-    async def get_one_or_none(self, **filer):
+    async def get_one_or_none(self, **data):
         """Получение одного элемента по фильтрам"""
-        query = select(self.model).filter_by(**filer)
+        query = select(self.model).filter_by(**data)
         result = await self.session.execute(query)
         item = result.scalars().one_or_none()
         if item is None:
