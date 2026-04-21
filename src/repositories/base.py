@@ -21,7 +21,7 @@ class BaseRepository:
         result = await self.session.execute(query)
         item = result.scalars().one_or_none()
         if item is None:
-            return {'detail': 'Отеля с указанным идентификатором не найдено!'}
+            return {'detail': 'Обьект с указанными данными не найден!'}
 
         return self.schema.model_validate(item, from_attributes=True)
 
