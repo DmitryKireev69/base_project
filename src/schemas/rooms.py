@@ -1,11 +1,9 @@
-from typing import Annotated
-
 from pydantic import BaseModel, Field
 
 class RoomSchema(BaseModel):
     hotel_id: int
     title: str
-    description: Annotated[str | None, Field(None)]
+    description: str | None = None
     price: int
     quantity: int
 
@@ -14,8 +12,8 @@ class CreateRoomSchema(RoomSchema):
 
 
 class RoomPATCH(BaseModel):
-    hotel_id: Annotated[int | None, Field(None)]
-    title: Annotated[str | None, Field(None)]
-    description: Annotated[str | None, Field(None)]
-    price: Annotated[int | None, Field(None)]
-    quantity: Annotated[int | None, Field(None)]
+    hotel_id: int | None = None
+    title: str | None = None
+    description: str | None = None
+    price: int | None = None
+    quantity: int | None = None
