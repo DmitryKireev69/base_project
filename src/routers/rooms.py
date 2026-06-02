@@ -25,7 +25,7 @@ async def create_room(room_data: RoomSchema):
         return room
 
 
-@router.delete('/{hotel_id}/{room_id}', summary='Удаление номера в отеле',
+@router.delete('/{hotel_id}/rooms/{room_id}', summary='Удаление номера в отеле',
                status_code=status.HTTP_204_NO_CONTENT)
 async def delete_room(hotel_id: int, room_id: int):
     """Удаление номера в отеле"""
@@ -34,7 +34,7 @@ async def delete_room(hotel_id: int, room_id: int):
         await session.commit()
 
 
-@router.put('{hotel_id}/{room_id}', summary='Полное обновление номера',
+@router.put('{hotel_id}/rooms/{room_id}', summary='Полное обновление номера',
             status_code=status.HTTP_200_OK)
 async def update_room(hotel_id: int, room_id: int, room_data: RoomSchema):
     """Полное обновление данных номера"""
@@ -46,7 +46,7 @@ async def update_room(hotel_id: int, room_id: int, room_data: RoomSchema):
         return result
 
 
-@router.patch('{hotel_id}/{room_id}', summary='Частичное обновление номера', status_code=status.HTTP_200_OK)
+@router.patch('{hotel_id}/rooms/{room_id}', summary='Частичное обновление номера', status_code=status.HTTP_200_OK)
 async def update_room(hotel_id: int, room_id: int, room_data: RoomPATCH):
     """Частичное обновление номера"""
     async with async_session_maker() as session:
