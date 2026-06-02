@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 from sqlalchemy import select, delete, update, insert
 
-
 class BaseRepository:
     model = None
     schema: BaseModel = None
@@ -11,7 +10,7 @@ class BaseRepository:
 
     async def get_all(self, *args, **kwargs):
         """Получение обьектов по фильтрам"""
-        query = select(self.model)
+        query = select(self.model).filter_by(**kwargs)
         result = await self.session.execute(query)
         return [self.schema.model_validate(hotel, from_attributes=True) for hotel in result.scalars().all()]
 

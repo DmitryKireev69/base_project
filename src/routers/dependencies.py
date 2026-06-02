@@ -1,7 +1,11 @@
 from typing import Annotated
+
 from fastapi import Query, Depends, Request, HTTPException, status
 from pydantic import BaseModel
+from sqlalchemy.ext.asyncio import AsyncSession
+
 from src.services.auth import AuthService
+from src.database import get_session
 
 class PaginationParams(BaseModel):
     page: Annotated[int, Query(1, description='Страница'),]
@@ -28,3 +32,4 @@ def get_current_user_id(access_token: str = Depends(get_token)) -> int:
 
 
 UserIdDep = Annotated[int, Depends(get_current_user_id)]
+SessionDep = Annotated[AsyncSession, Depends(get_session)]
